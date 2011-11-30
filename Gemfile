@@ -37,5 +37,6 @@ group :test do
   gem 'webmock'
   gem 'capybara'
   gem 'therubyracer'
+  gem 'factory_girl_rails'
 end
 
