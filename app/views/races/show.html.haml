@@ -1,7 +1,8 @@
-
-%h1= "Zapisy na #{@race.name}"
+%h2= "Zapisy na #{@race.name}"
 %p
   %b Zapisy otwarte do:
-  =l @race.registration_closed_at
+  =l @race.registration_closed_at.to_date, format: :long
 
 %p= @race.description
+
+%p= link_to "Zapisz się", new_race_race_registration_path(@race)

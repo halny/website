@@ -1,4 +1,6 @@
 class RaceRegistrationsController < ApplicationController
+
+  before_filter :find_race, only: [:new, :edit, :create, :update]
   # GET /race_registrations
   # GET /race_registrations.json
   def index
@@ -79,5 +81,11 @@ class RaceRegistrationsController < ApplicationController
       format.html { redirect_to race_registrations_url }
       format.json { head :ok }
     end
+  end
+
+  private
+
+  def find_race
+    @race = Race.find(params[:race_id])
   end
 end
