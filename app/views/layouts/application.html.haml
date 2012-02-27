@@ -8,7 +8,7 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    .container
+    #page
       #user_bar
         - if user_signed_in?
           Zalogowano jako #{current_user.email}. Ktoś inny?
@@ -17,7 +17,7 @@
           = link_to "Rejestracja", new_user_registration_path
           lub
           = link_to "Zaloguj się", new_user_session_path
-      %h1 Halny
+      %h1= link_to "Halny", root_path
       - if flash[:notice]
         %p.notice= flash[:notice]
       - if flash[:error]
