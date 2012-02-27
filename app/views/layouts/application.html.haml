@@ -8,7 +8,7 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    #page
+    #page.container
       #user_bar
         - if user_signed_in?
           Zalogowano jako #{current_user.email}. Ktoś inny?
