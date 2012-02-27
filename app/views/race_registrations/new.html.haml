@@ -1,5 +1,7 @@
 %h2 Zapisy
 
-%p Zapisujesz się na #{@race.name}, #{@race_variant.name}
+%p
+  Zapisujesz się na
+  %b #{@race.name}, #{@race_variant.name}
 
 = render 'form'
