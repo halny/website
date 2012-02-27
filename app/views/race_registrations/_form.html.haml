@@ -1,0 +1,13 @@
+= semantic_form_for @race_registration do |f|
+  = f.inputs do
+      = f.input :is_student
+      = f.input :is_member
+      = f.input :email
+      = f.input :telephone
+      = f.input :name
+      = f.input :lastname
+      = f.input :paid
+      = f.input :notes
+  
+  = f.buttons do
+    = f.commit_button

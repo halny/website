@@ -11,12 +11,42 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111215001624) do
+ActiveRecord::Schema.define(:version => 20120227184948) do
 
   create_table "posts", :force => true do |t|
     t.datetime "published_at"
     t.string   "title"
     t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "race_registrations", :force => true do |t|
+    t.boolean  "is_student"
+    t.boolean  "is_member"
+    t.string   "email"
+    t.string   "telephone"
+    t.string   "name"
+    t.string   "lastname"
+    t.integer  "paid"
+    t.string   "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "race_variants", :force => true do |t|
+    t.string   "name"
+    t.integer  "capacity"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "races", :force => true do |t|
+    t.datetime "registration_open_from"
+    t.datetime "registration_closed_at"
+    t.string   "name"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

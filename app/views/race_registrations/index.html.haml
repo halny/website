@@ -1,0 +1,33 @@
+%h1 Listing race_registrations
+
+%table
+  %tr
+    %th Is student
+    %th Is member
+    %th Email
+    %th Telephone
+    %th Name
+    %th Lastname
+    %th Paid
+    %th Notes
+    %th
+    %th
+    %th
+
+  - @race_registrations.each do |race_registration|
+    %tr
+      %td= race_registration.is_student
+      %td= race_registration.is_member
+      %td= race_registration.email
+      %td= race_registration.telephone
+      %td= race_registration.name
+      %td= race_registration.lastname
+      %td= race_registration.paid
+      %td= race_registration.notes
+      %td= link_to 'Show', race_registration
+      %td= link_to 'Edit', edit_race_registration_path(race_registration)
+      %td= link_to 'Destroy', race_registration, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Race registration', new_race_registration_path

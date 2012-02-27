@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Is student:
+  = @race_registration.is_student
+%p
+  %b Is member:
+  = @race_registration.is_member
+%p
+  %b Email:
+  = @race_registration.email
+%p
+  %b Telephone:
+  = @race_registration.telephone
+%p
+  %b Name:
+  = @race_registration.name
+%p
+  %b Lastname:
+  = @race_registration.lastname
+%p
+  %b Paid:
+  = @race_registration.paid
+%p
+  %b Notes:
+  = @race_registration.notes
+
+= link_to 'Edit', edit_race_registration_path(@race_registration)
+\|
+= link_to 'Back', race_registrations_path

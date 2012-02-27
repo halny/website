@@ -1,0 +1,2 @@
+module RaceVariantsHelper
+end

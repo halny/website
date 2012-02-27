@@ -11,10 +11,10 @@
     .container
       #user_bar
         - if user_signed_in?
-          Signed in as #{current_user.email}. Not you?
-          = link_to "Sign out", destroy_user_session_path, :method => :delete
+          Zalogowano jako #{current_user.email}. Ktoś inny?
+          = link_to "Wyloguj się", destroy_user_session_path, :method => :delete
         - else
-          = link_to "Sign up", new_user_registration_path
-          or
-          = link_to "Sign in", new_user_session_path
+          = link_to "Rejestracja", new_user_registration_path
+          lub
+          = link_to "Zaloguj się", new_user_session_path
       = yield

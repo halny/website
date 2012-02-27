@@ -1,4 +1,11 @@
 Halny::Application.routes.draw do
+
+  resources :race_variants
+
+  resources :races, path: 'rajdy', only: [:index, :show] do
+    resources :race_registrations, path: 'zapisy'
+  end
+
   devise_for :users
 
   resources :posts
