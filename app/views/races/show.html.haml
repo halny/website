@@ -5,4 +5,9 @@
 
 %p= @race.description
 
-%p= link_to "Zapisz się", new_race_race_registration_path(@race)
+%table
+  - @race.race_variants.each do |variant|
+    %tr
+      %td= variant.name
+      %td= "Zostało: #{variant.left} miejsc"
+      %td= link_to "Zapisz się", new_race_race_variant_race_registration_path(@race, variant)

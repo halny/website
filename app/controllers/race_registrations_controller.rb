@@ -1,6 +1,7 @@
 class RaceRegistrationsController < ApplicationController
 
   before_filter :find_race, only: [:new, :edit, :create, :update]
+  before_filter :find_race_variant, only: [:new, :edit, :create, :update]
   # GET /race_registrations
   # GET /race_registrations.json
   def index
@@ -87,5 +88,9 @@ class RaceRegistrationsController < ApplicationController
 
   def find_race
     @race = Race.find(params[:race_id])
+  end
+
+  def find_race_variant
+    @race_variant = RaceVariant.find(params[:race_variant_id])
   end
 end

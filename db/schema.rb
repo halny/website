@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120227184948) do
+ActiveRecord::Schema.define(:version => 20120227201631) do
 
   create_table "posts", :force => true do |t|
     t.datetime "published_at"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20120227184948) do
     t.string   "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "race_variant_id"
   end
 
   create_table "race_variants", :force => true do |t|
@@ -40,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20120227184948) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "race_id"
   end
 
   create_table "races", :force => true do |t|
