@@ -4,6 +4,7 @@
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
     %title
       = content_for?(:title) ? yield(:title) : "Halny"
+    %link{href: 'http://fonts.googleapis.com/css?family=Signika+Negative:600', rel: 'stylesheet', type: 'text/css'}
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
@@ -11,13 +12,18 @@
     #page.container
       #user_bar
         - if user_signed_in?
-          Zalogowano jako #{current_user.email}. Ktoś inny?
+          Zalogowano
+          %b= current_user.email
+          \::
           = link_to "Wyloguj się", destroy_user_session_path, :method => :delete
         - else
           = link_to "Rejestracja", new_user_registration_path
-          lub
+          \::
           = link_to "Zaloguj się", new_user_session_path
-      %h1= link_to "Halny", root_path
+      %h1.logo
+        = link_to root_path do
+          = image_tag('logo.png')
+          Halny
       - if flash[:notice]
         %p.notice= flash[:notice]
       - if flash[:error]
