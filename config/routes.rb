@@ -6,9 +6,7 @@ Halny::Application.routes.draw do
     resources :race_registrations, path: 'zapisy', only: [:new, :create]
   end
 
-  resources :users
-
-  resources :race_registrations, only: [:edit, :update]
+  resources :race_registrations, only: [:edit, :update, :destroy]
 
   devise_for :users
 

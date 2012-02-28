@@ -4,8 +4,8 @@ class RaceRegistrationsController < ApplicationController
 
   before_filter :authenticate_user!
 
-  before_filter :find_race_registration, only: [:edit, :update]
-  before_filter :user_can_edit?, only: [:edit, :update]
+  before_filter :find_race_registration, only: [:edit, :update, :destroy]
+  before_filter :user_can_edit?, only: [:edit, :update, :destroy]
 
   before_filter :find_race_variant, only: [:new, :create]
   before_filter :check_if_possible, only: [:new, :create]
@@ -34,6 +34,11 @@ class RaceRegistrationsController < ApplicationController
     else
       render action: "edit"
     end
+  end
+
+  def destroy
+    @race_registration.destroy
+    redirect_to races_path, notice: 'Rejestracja na rajd została anulowana.'
   end
 
   private
