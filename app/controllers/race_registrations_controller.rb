@@ -5,6 +5,8 @@ class RaceRegistrationsController < ApplicationController
   before_filter :find_race, only: [:new, :edit, :create, :update]
   before_filter :find_race_variant, only: [:new, :edit, :create, :update]
 
+  before_filter :check_if_possible, only: [:new, :create]
+
   def new
     @race_registration = @race_variant.race_registrations.build(email: current_user.try(:email))
   end
@@ -27,5 +29,9 @@ class RaceRegistrationsController < ApplicationController
 
   def find_race_variant
     @race_variant = RaceVariant.find(params[:race_variant_id])
+  end
+
+  def check_if_possible
+    redirect_to @race, alert: "Brak miejsc na tej trasie." if @race_variant.no_places_left?
   end
 end
