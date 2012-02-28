@@ -36,4 +36,6 @@
         %p.error= flash[:error]
       - if flash[:alert]
         %p.alert= flash[:alert]
-      = yield
+      .row
+        .content.nine.columns= yield
+        .side.three.columns
