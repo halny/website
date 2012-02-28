@@ -1,8 +1,8 @@
-%h1 Zapisy są otwarte na poniższe rajdy
+%h2 Zapisy są otwarte na poniższe rajdy
 
 %ul
   - @races.each do |race|
     %li
-      %h2= race.name
+      %h3= race.name
       %p= race.description
       =link_to 'Szczegóły', race
