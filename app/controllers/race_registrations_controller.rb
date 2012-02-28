@@ -15,7 +15,7 @@ class RaceRegistrationsController < ApplicationController
     @race_registration = @race_variant.race_registrations.build(params[:race_registration])
 
     if @race_registration.save
-      redirect_to race_path(@race), notice: 'Race registration was successfully created.'
+      redirect_to race_path(@race), notice: 'Rejestracja na rajd zakończona sukcesem.'
     else
       render action: "new"
     end
