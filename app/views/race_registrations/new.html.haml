@@ -4,4 +4,14 @@
   Zapisujesz się na
   %b #{@race_variant.race.name}, #{@race_variant.name}
 
-= render 'form'
+= semantic_form_for [@race_variant, @race_registration] do |f|
+  = f.inputs do
+    = f.input :name, label: 'Imię'
+    = f.input :lastname, label: 'Nazwisko'
+    = f.input :email, label: 'Adres email'
+    = f.input :telephone, label: 'Numer telefonu'
+    = f.input :is_student, label: 'Zniżki studenckie'
+    = f.input :is_member, label: 'Członek klubu z opłaconą składką'
+
+  = f.buttons do
+    = f.commit_button "Zapisz się", button_html: { class: 'button medium brown radius' }

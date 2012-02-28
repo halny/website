@@ -8,6 +8,8 @@ Halny::Application.routes.draw do
 
   resources :users
 
+  resources :race_registrations, only: [:edit, :update]
+
   devise_for :users
 
   resources :posts, path: 'wiadomosci'

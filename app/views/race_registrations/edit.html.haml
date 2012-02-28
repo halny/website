@@ -1,7 +1,17 @@
-%h1 Editing race_registration
+%h2 Zapisy
 
-= render 'form'
+%p
+  Edytujesz informacje podane przy zapisie na
+  %b #{@race_registration.race_variant.race.name}, #{@race_registration.race_variant.name}
 
-= link_to 'Show', @race_registration
-\|
-= link_to 'Back', race_registrations_path
+= semantic_form_for @race_registration do |f|
+  = f.inputs do
+    = f.input :name, label: 'Imię'
+    = f.input :lastname, label: 'Nazwisko'
+    = f.input :email, label: 'Adres email'
+    = f.input :telephone, label: 'Numer telefonu'
+    = f.input :is_student, label: 'Zniżki studenckie'
+    = f.input :is_member, label: 'Członek klubu z opłaconą składką'
+
+  = f.buttons do
+    = f.commit_button "Zapisz zmiany", button_html: { class: 'button medium brown radius' }
