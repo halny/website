@@ -1,8 +1,40 @@
-%h2 Zapisy są otwarte na poniższe rajdy
-
 %ul
   - @races.each do |race|
     %li
-      %h3= race.name
+      %h3= "Zapisy na #{race.name}"
+      %p
+        %b Zapisy otwarte do:
+        =l race.registration_closed_at.to_date, format: :long
+
       %p= race.description
-      =link_to 'Szczegóły', race
+
+      %table
+        - race.race_variants.each do |variant|
+          %tr
+            %td= variant.name
+            %td
+              - if variant.no_places_left?
+                %span.error Brak miejsc!
+              - else
+                Zostało: #{variant.left} miejsc
+            %td
+              - if !variant.no_places_left?
+                =link_to "Zapisz się", new_race_variant_race_registration_path(variant)
+
+- if @registrations.present?
+  %h3 Dokonano zapisu na poniższe rajdy
+  %table
+    %thead
+      %tr
+        %th Rajd
+        %th Trasa
+        %th Osoba
+        %th
+    %tbody
+      - @registrations.each do |r|
+        %tr
+          %td= r.race_variant.race.name
+          %td= r.race_variant.name
+          %td #{r.name} #{r.lastname}
+          %td
+            =link_to "Szczegóły/edycja"
