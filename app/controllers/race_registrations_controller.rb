@@ -1,5 +1,7 @@
 class RaceRegistrationsController < ApplicationController
 
+  before_filter :authenticate_user!
+
   before_filter :find_race, only: [:new, :edit, :create, :update]
   before_filter :find_race_variant, only: [:new, :edit, :create, :update]
 

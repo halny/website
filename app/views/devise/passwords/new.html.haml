@@ -1,0 +1,10 @@
+%h2 Zapomniane hasło?
+
+= semantic_form_for resource, as: resource_name, url: password_path(resource_name) do |f|
+  = f.inputs do
+    = f.input :email, label: 'Adres email', as: :email
+
+  = f.buttons do
+    = f.commit_button "Wyślij email z instrukcją zmiany hasła", button_html: { class: 'button medium brown radius' }
+
+= render partial: "devise/shared/links"
