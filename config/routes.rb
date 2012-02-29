@@ -10,6 +10,11 @@ Halny::Application.routes.draw do
 
   resource :settings, path: 'konto', only: [:edit, :update]
 
+  namespace :admin do
+    resources :races
+    root :to => "races#index"
+  end
+
   devise_for :users, path: 'accounts'
 
   resources :posts, path: 'wiadomosci'

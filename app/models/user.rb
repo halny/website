@@ -9,4 +9,12 @@ class User < ActiveRecord::Base
     :lastname, :telephone, :is_student, :is_member
 
   has_many :race_registrations
+
+  def grant_admin!
+    update_attribute(:is_admin, true)
+  end
+
+  def revoke_admin!
+    update_attribute(:is_admin, false)
+  end
 end

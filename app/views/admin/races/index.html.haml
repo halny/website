@@ -1,0 +1,22 @@
+%ul
+  - @races.each do |race|
+    %li
+      %h3= "Zapisy na #{race.name}"
+      %p
+        %b Zapisy otwarte do:
+        =l race.registration_closed_at.to_date, format: :long
+
+      %p= race.description
+
+      %table
+        - race.race_variants.each do |variant|
+          %tr
+            %td= variant.name
+            %td
+              - if variant.no_places_left?
+                %span.error Brak miejsc!
+              - else
+                Zostało: #{variant.left} miejsc
+            %td
+              - if !variant.no_places_left?
+                =link_to "Zapisz się", new_race_variant_race_registration_path(variant)
