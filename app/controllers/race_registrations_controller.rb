@@ -11,7 +11,9 @@ class RaceRegistrationsController < ApplicationController
   before_filter :check_if_possible, only: [:new, :create]
 
   def new
-    @race_registration = @race_variant.race_registrations.build(email: current_user.email)
+    defaults = { email: current_user.email, name: current_user.name, lastname: current_user.lastname,
+      is_student: current_user.is_student, is_member: current_user.is_member, telephone: current_user.telephone }
+    @race_registration = @race_variant.race_registrations.build(defaults)
   end
 
   def create

@@ -8,7 +8,9 @@ Halny::Application.routes.draw do
 
   resources :race_registrations, only: [:edit, :update, :destroy]
 
-  devise_for :users
+  resource :settings, path: 'konto', only: [:edit, :update]
+
+  devise_for :users, path: 'accounts'
 
   resources :posts, path: 'wiadomosci'
 

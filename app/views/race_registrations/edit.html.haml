@@ -15,5 +15,6 @@
 
   = f.buttons do
     = f.commit_button "Zapisz zmiany", button_html: { class: 'button medium brown radius' }
-    = button_to 'Anuluj rejestrację na rajd', race_registration_path(@race_registration),
-      method: :delete, class: 'button medium red radius', confirm: "Na pewno chcesz anulować swoją rejestrację?"
+
+= button_to 'Anuluj rejestrację na rajd', race_registration_path(@race_registration),
+  method: :delete, class: 'button medium red radius', confirm: "Na pewno chcesz anulować swoją rejestrację?"

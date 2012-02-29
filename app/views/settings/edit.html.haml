@@ -1,0 +1,17 @@
+%h2 Dane konta
+
+%p
+  Poniższe informacje są opcjonalne, podanie ich tutaj zwalnia z konieczności podania ich przy zapisie na rajd.
+
+= semantic_form_for current_user, url: settings_path do |f|
+  = f.inputs do
+    = f.input :name, label: 'Imię'
+    = f.input :lastname, label: 'Nazwisko'
+    = f.input :telephone, label: 'Numer telefonu'
+    = f.input :is_student, label: 'Zniżki studenckie', as: :boolean
+    = f.input :is_member, label: 'Członek klubu z opłaconą składką', as: :boolean
+
+  = f.buttons do
+    = f.commit_button "Zapisz zmiany", button_html: { class: 'button medium brown radius' }
+
+= button_to "Usuń konto", user_registration_path, method: :delete, class: 'button medium red radius', confirm: "Na pewno chcesz usunąć swoje konto? Nie będzie można go przywrócić!"
