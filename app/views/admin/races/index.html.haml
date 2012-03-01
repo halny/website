@@ -12,6 +12,7 @@
       %th Trasy
       %th Zapisy łącznie
       %th
+      %th
   %tbody
     - @races.each do |race|
       %tr
@@ -21,3 +22,4 @@
         %td= link_to "#{race.race_variants.count} - szczegóły"
         %td= link_to "#{race.registrations_total} - szczegóły"
         %td= link_to "edycja", edit_admin_race_path(race)
+        %td= button_to "usuń", admin_race_path(race), method: :delete, confirm: "Usunięcie rajdu usunie też informacje o trasach i zapisach!"

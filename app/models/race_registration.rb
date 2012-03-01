@@ -1,5 +1,7 @@
 class RaceRegistration < ActiveRecord::Base
 
+  acts_as_paranoid
+
   belongs_to :race_variant
   belongs_to :user
 

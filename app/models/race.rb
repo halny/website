@@ -2,10 +2,12 @@
 
 class Race < ActiveRecord::Base
 
+  acts_as_paranoid
+
   scope :open_for_registration,
     lambda { where("registration_closed_at >= ?", DateTime.now).where("registration_open_from <= ?", DateTime.now) }
 
-  has_many :race_variants
+  has_many :race_variants, dependent: :destroy
 
   validates_presence_of :name, :description, :registration_open_from, :registration_closed_at
 

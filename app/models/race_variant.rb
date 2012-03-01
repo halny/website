@@ -1,7 +1,9 @@
 class RaceVariant < ActiveRecord::Base
 
+  acts_as_paranoid
+
   belongs_to :race
-  has_many :race_registrations
+  has_many :race_registrations, dependent: :destroy
 
   def left
     capacity - race_registrations.count

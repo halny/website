@@ -13,6 +13,8 @@ gem 'omniauth-google-oauth2'
 
 gem 'formtastic'
 
+gem 'rails3_acts_as_paranoid'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

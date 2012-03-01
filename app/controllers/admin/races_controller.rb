@@ -36,6 +36,8 @@ class Admin::RacesController < AdminController
   end
 
   def destroy
+    @race.destroy
+    redirect_to admin_races_path, notice: "Rajd został usunięty."
   end
 
   private
