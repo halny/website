@@ -1,0 +1,21 @@
+%h2 Zarządzanie trasami dla #{@race.name}
+
+.actions
+  =link_to "Dodaj nową trasę", new_admin_race_race_variant_path(@race), class: 'button medium radius brown'
+
+%table
+  %thead
+    %tr
+      %th Nazwa
+      %th Miejsc
+      %th Zapisano
+      %th
+      %th
+  %tbody
+    - @race.race_variants.each do |variant|
+      %tr
+        %td= variant.name
+        %td= variant.capacity
+        %td= link_to "#{variant.race_registrations.count} - szczegóły"
+        %td= link_to "edytuj", edit_admin_race_race_variant_path(@race, variant)
+        %td= button_to "usuń", admin_race_race_variant_path(@race, variant), method: :delete, confirm: "Usunięcie trasy usunie też informacje o zapisach!"

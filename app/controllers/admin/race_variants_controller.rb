@@ -6,7 +6,6 @@ class Admin::RaceVariantsController < AdminController
   before_filter :find_race_variant, only: [:edit, :update, :destroy]
 
   def index
-    @race_variants = @race.race_variants
   end
 
   def new
