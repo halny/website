@@ -12,7 +12,7 @@ Halny::Application.routes.draw do
 
   namespace :admin do
     resources :races
-    root :to => "races#index"
+    root :to => "dashboard#show"
   end
 
   devise_for :users, path: 'accounts'

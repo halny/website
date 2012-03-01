@@ -1,0 +1,10 @@
+#user_bar
+  - if user_signed_in?
+    Zalogowano
+    %b= current_user.email
+    \::
+    = link_to "Wyloguj się", destroy_user_session_path, :method => :delete
+  - else
+    = link_to "Rejestracja", new_user_registration_path
+    \::
+    = link_to "Zaloguj się", new_user_session_path

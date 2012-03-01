@@ -1,11 +1,14 @@
+- content_for :title do
+  Admin &raquo; Halny
+
 !!!
 %html
   =render partial: 'layouts/head'
   %body
-    #page.container
+    #page.container.admin
       =render partial: 'layouts/user_bar'
       =render partial: 'layouts/logo'
       =render partial: 'layouts/nav'
       =render partial: 'layouts/flash_messages'
       .row
-        .content.nine.columns= yield
+        .content.twelve.columns= yield

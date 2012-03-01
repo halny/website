@@ -4,6 +4,8 @@ class AdminController < ApplicationController
   before_filter :authenticate_user!
   before_filter :check_if_admin?
 
+  layout 'admin'
+
   private
 
   def check_if_admin?

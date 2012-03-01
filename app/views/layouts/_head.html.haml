@@ -1,0 +1,8 @@
+%head
+  %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+  %title
+    = content_for?(:title) ? yield(:title) : "Halny"
+  %link{href: 'http://fonts.googleapis.com/css?family=Signika+Negative:600', rel: 'stylesheet', type: 'text/css'}
+  = stylesheet_link_tag    "application"
+  = javascript_include_tag "application"
+  = csrf_meta_tags
