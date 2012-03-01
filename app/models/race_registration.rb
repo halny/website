@@ -8,4 +8,8 @@ class RaceRegistration < ActiveRecord::Base
   attr_accessible :name, :lastname, :email, :telephone, :is_student, :is_member
 
   validates_presence_of :name, :lastname, :email
+
+  def paid_amount
+    paid || 0
+  end
 end

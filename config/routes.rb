@@ -12,7 +12,10 @@ Halny::Application.routes.draw do
 
   namespace :admin do
     resources :races do
-      resources :race_variants
+      resources :race_variants do
+        resources :race_registrations
+      end
+      resources :race_registrations, only: [:index]
     end
     root :to => "dashboard#show"
   end

@@ -1,0 +1,35 @@
+%h2 Zapisy na rajd
+
+- @race_variants.each do |variant|
+  %h3 #{variant.race.name} - #{variant.name}
+  =link_to "Dodaj osobę", new_admin_race_race_variant_race_registration_path(@race, variant), class: 'button small radius brown'
+  -if variant.race_registrations.present?
+    =link_to "Pobierz jako csv", admin_race_race_variant_race_registrations_path(@race, variant, format: :csv),
+      class: 'button small radius brown'
+    %table
+      %thead
+        %tr
+          %th Osoba
+          %th Email
+          %th Telefon
+          %th Student?
+          %th Halniak?
+          %th Zapisano uwagi?
+          %th Zapłacono
+          %th
+          %th
+      %tbody
+        - variant.race_registrations.each do |registration|
+          %tr
+            %td #{registration.name} #{registration.lastname}
+            %td= registration.email
+            %td= registration.telephone
+            %td= "TAK" if registration.is_student?
+            %td= "TAK" if registration.is_member?
+            %td= "TAK" if registration.notes.present?
+            %td= number_to_currency(registration.paid_amount)
+            %td= link_to "edytuj", edit_admin_race_race_variant_race_registration_path(@race, variant, registration)
+            %td= button_to "usuń", admin_race_race_variant_race_registration_path(@race, variant, registration),
+              method: :delete, confirm: "Na pewno chcesz anulować rejestrację na rajd tej osoby?"
+  - else
+    %p Nikt się jeszcze nie zapisał na tę trasę.
