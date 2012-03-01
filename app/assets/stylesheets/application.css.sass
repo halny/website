@@ -24,7 +24,6 @@ body
 
 #page
   background-color: white
-  padding: 0 2em 2em 2em
 
 .brown.button
   background-color: #960
@@ -52,6 +51,14 @@ ul.nav
     a
       padding: .5em 1em
       display: inline-block
+      &:hover, &:active
+        background-color: #422
+
+ul.nav.secondary
+  li
+    border-color: #AAA
+    a
+      font-size: 80%
 
 div.side
   background-color: #999
@@ -71,3 +78,12 @@ fieldset.buttons
     padding: 0
     li
       margin: 0
+
+.footer
+  text-align: center
+  color: #FFF
+  background-color: #420
+  margin: 0 -20px
+  padding: .5em
+  p
+    margin-bottom: 0
