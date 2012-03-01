@@ -3,7 +3,9 @@
 class Admin::RaceRegistrationsController < AdminController
 
   before_filter :find_race
+  before_filter :find_race_variant, except: [:index]
   before_filter :find_race_variants, only: [:index]
+  before_filter :find_race_registration, only: [:edit, :update, :destroy]
 
   def index
     respond_to do |format|
@@ -28,6 +30,8 @@ class Admin::RaceRegistrationsController < AdminController
   end
 
   def destroy
+    @race_registration.destroy
+    redirect_to admin_race_race_variant_race_registrations_path(@race, @race_variant), notice: "Rejestracja na rajd usunięta."
   end
 
   private
@@ -36,13 +40,21 @@ class Admin::RaceRegistrationsController < AdminController
     @race = Race.find(params[:race_id])
   end
 
+  def find_race_variant
+    @race_variant = @race.race_variants.find(params[:race_variant_id])
+  end
+
   def find_race_variants
     if params[:race_variant_id].present?
-      @race_variant = @race.race_variants.find(params[:race_variant_id])
+      find_race_variant
       @race_variants = [ @race_variant ]
     else
       @race_variants = @race.race_variants
     end
+  end
+
+  def find_race_registration
+    @race_registration = @race_variant.race_registrations.find(params[:id])
   end
 
   def export_csv(registrations, filename)
