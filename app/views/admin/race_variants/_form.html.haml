@@ -1,0 +1,8 @@
+= semantic_form_for [:admin, @race, @race_variant] do |f|
+  = f.inputs do
+    = f.input :name, label: 'Nazwa'
+    = f.input :description, label: 'Krótki opis', as: :text, input_html: { class: 'autogrow', rows: 5, cols: 60 }
+    = f.input :capacity, label: 'Liczba miejsc na trasie'
+
+  = f.buttons do
+    = f.commit_button "Zapisz", button_html: { class: 'button medium brown radius' }
