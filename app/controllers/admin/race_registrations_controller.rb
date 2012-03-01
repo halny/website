@@ -18,15 +18,32 @@ class Admin::RaceRegistrationsController < AdminController
   end
 
   def new
+    @race_registration = @race_variant.race_registrations.build
   end
 
   def create
+    @race_registration = @race_variant.race_registrations.build(params[:race_registration])
+    @race_registration.accessible = [:notes, :paid]
+
+    if @race_registration.save
+      redirect_to admin_race_race_variant_race_registrations_path(@race, @race_variant), notice: "Dodano nową osobę na rajd."
+    else
+      flash[:error] = "Popraw błędu w formularzu."
+      render action: 'new'
+    end
   end
 
   def edit
   end
 
   def update
+    @race_registration.accessible = [:notes, :paid]
+    if @race_registration.update_attributes(params[:race_registration])
+      redirect_to admin_race_race_variant_race_registrations_path(@race, @race_variant), notice: "Zmiany zapisane."
+    else
+      flash[:error] = "Popraw błędu w formularzu."
+      render action: 'edit'
+    end
   end
 
   def destroy

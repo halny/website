@@ -10,6 +10,7 @@ class RaceRegistration < ActiveRecord::Base
   belongs_to :user
 
   attr_accessible :name, :lastname, :email, :telephone, :is_student, :is_member
+  attr_accessor :accessible
 
   validates_presence_of :name, :lastname, :email
 
@@ -31,5 +32,11 @@ class RaceRegistration < ActiveRecord::Base
         csv << row
       end
     end
+  end
+
+  private
+
+  def mass_assignment_authorizer(role = :default)
+    super(role) + (accessible || [])
   end
 end

@@ -1,0 +1,13 @@
+= semantic_form_for [:admin, @race, @race_variant, @race_registration] do |f|
+  = f.inputs do
+    = f.input :name, label: 'Imię'
+    = f.input :lastname, label: 'Nazwisko'
+    = f.input :email, label: 'Adres email', as: :email
+    = f.input :telephone, label: 'Numer telefonu'
+    = f.input :paid, label: 'Osoba zapłaciła do tej pory', hint: 'PLN'
+    = f.input :is_student, label: 'Zniżki studenckie'
+    = f.input :is_member, label: 'Członek klubu z opłaconą składką'
+    = f.input :notes, label: 'Uwagi', as: :text, input_html: { class: 'autogrow', rows: 5, cols: 60 }
+
+  = f.buttons do
+    = f.commit_button "Zapisz", button_html: { class: 'button medium brown radius' }
