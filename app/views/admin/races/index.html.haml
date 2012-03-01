@@ -1,10 +1,23 @@
 %h2 Zarządzanie rajdami
 
+.actions
+  =link_to "Dodaj nowy rajd", new_admin_race_path, class: 'button medium radius brown'
+
 %table
   %thead
     %tr
       %th Nazwa
+      %th Zapisy od
+      %th Zapisy do
+      %th Trasy
+      %th Zapisy łącznie
+      %th
   %tbody
     - @races.each do |race|
       %tr
         %td= race.name
+        %td= l race.registration_open_from.to_date, format: :long
+        %td= l race.registration_closed_at.to_date, format: :long
+        %td= link_to "#{race.race_variants.count} - szczegóły"
+        %td= link_to "#{race.registrations_total} - szczegóły"
+        %td= link_to "edycja", edit_admin_race_path(race)

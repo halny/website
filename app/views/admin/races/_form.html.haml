@@ -1,0 +1,9 @@
+= semantic_form_for [:admin, @race] do |f|
+  = f.inputs do
+    = f.input :name, label: 'Nazwa'
+    = f.input :description, label: 'Krótki opis', as: :text, input_html: { class: 'autogrow', rows: 5, cols: 60 }
+    = f.input :registration_open_from, label: 'Rejestracja otwarta od', as: :date
+    = f.input :registration_closed_at, label: 'Rejestracja otwarta do', as: :date
+
+  = f.buttons do
+    = f.commit_button "Zapisz", button_html: { class: 'button medium brown radius' }
