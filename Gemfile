@@ -13,6 +13,8 @@ gem 'omniauth-google-oauth2'
 
 gem 'formtastic'
 
+gem 'fastercsv'
+
 gem 'rails3_acts_as_paranoid', git: 'git://github.com/softcraft-development/rails3_acts_as_paranoid.git'
 
 # Gems used only for assets and not required
