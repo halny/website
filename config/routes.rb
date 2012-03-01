@@ -11,7 +11,9 @@ Halny::Application.routes.draw do
   resource :settings, path: 'konto', only: [:edit, :update]
 
   namespace :admin do
-    resources :races
+    resources :races do
+      resources :race_variants
+    end
     root :to => "dashboard#show"
   end
 
