@@ -17,6 +17,7 @@ Halny::Application.routes.draw do
       end
       resources :race_registrations, only: [:index]
     end
+    resources :posts
     root :to => "dashboard#show"
   end
 
