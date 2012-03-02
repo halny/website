@@ -1,23 +1,9 @@
-%h1 Listing posts
-
-%table
-  %tr
-    %th Published at
-    %th Title
-    %th Content
-    %th
-    %th
-    %th
-
+- if @posts.present?
   - @posts.each do |post|
-    %tr
-      %td= post.published_at
-      %td= post.title
-      %td= post.content
-      %td= link_to 'Show', post
-      %td= link_to 'Edit', edit_post_path(post)
-      %td= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Post', new_post_path
+    .article
+      .info
+        %h3.title= post.title
+        %p.date= l post.published_at.to_date
+      .content= post.content
+- else
+  %p Chwilowo brak aktualności.
