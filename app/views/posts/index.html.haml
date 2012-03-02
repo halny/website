@@ -2,8 +2,8 @@
   - @posts.each do |post|
     .article
       .info
-        %h3.title= post.title
+        %h3.title= link_to post.title, post_path(post)
         %p.date= l post.published_at.to_date
-      .content= post.content
+      .content= simple_format post.content
 - else
   %p Chwilowo brak aktualności.
