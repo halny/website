@@ -1,0 +1,23 @@
+%h2 Zarządzanie aktualnościami
+
+.actions
+  =link_to "Dodaj nowy wpis", new_admin_post_path, class: 'button medium radius brown'
+
+%table
+  %thead
+    %tr
+      %th Tytuł
+      %th Widoczny?
+      %th Data publikacji
+      %th Ostatnie zmiany
+      %th
+      %th
+  %tbody
+    - @posts.each do |post|
+      %tr
+        %td= post.title
+        %td= "TAK" if post.visible?
+        %td= l post.published_at.to_date, format: :long
+        %td= l post.updated_at.to_date, format: :long
+        %td= link_to "edycja / treść", edit_admin_post_path(post)
+        %td= button_to "usuń", admin_post_path(post), method: :delete, confirm: "Na pewno usunąć ten wpis?"
