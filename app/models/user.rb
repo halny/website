@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name,
     :lastname, :telephone, :is_student, :is_member
 
+  attr_accessor :accessible
+
   has_many :race_registrations
 
   def grant_admin!
@@ -19,5 +21,11 @@ class User < ActiveRecord::Base
 
   def revoke_admin!
     update_attribute(:is_admin, false)
+  end
+
+  private
+
+  def mass_assignment_authorizer(role = :default)
+    super(role) + (accessible || [])
   end
 end
