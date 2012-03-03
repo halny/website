@@ -1,0 +1,9 @@
+= semantic_form_for [:admin, @page] do |f|
+  = f.inputs do
+    = f.input :name, label: 'Nazwa'
+    = f.input :slug, label: 'Nazwa w linku'
+    = f.input :active, label: 'Strona jest aktywna'
+    = f.input :show_in_navbar, label: 'Umieść w nawigacji'
+    = f.input :content, label: 'Zawartość', as: :ckeditor
+  = f.buttons do
+    = f.commit_button "Zapisz", button_html: { class: 'button medium brown radius' }
