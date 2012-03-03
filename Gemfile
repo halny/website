@@ -17,6 +17,9 @@ gem 'fastercsv'
 
 gem 'rails3_acts_as_paranoid', git: 'git://github.com/softcraft-development/rails3_acts_as_paranoid.git'
 
+gem 'paperclip'
+gem 'ckeditor', git: 'git://github.com/pshoukry/ckeditor.git'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
