@@ -9,7 +9,7 @@ class Admin::PostsController < AdminController
   end
 
   def new
-    @post = Post.new
+    @post = Post.new(published_at: Date.today)
   end
 
   def create
