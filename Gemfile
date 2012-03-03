@@ -17,6 +17,8 @@ gem 'fastercsv'
 
 gem 'rails3_acts_as_paranoid', git: 'git://github.com/softcraft-development/rails3_acts_as_paranoid.git'
 
+gem 'koala'
+
 gem 'paperclip'
 gem 'ckeditor', git: 'git://github.com/pshoukry/ckeditor.git'
 
