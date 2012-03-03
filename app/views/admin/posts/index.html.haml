@@ -10,6 +10,7 @@
       %th Widoczny?
       %th Data publikacji
       %th Ostatnie zmiany
+      %th Facebook?
       %th
       %th
   %tbody
@@ -19,5 +20,10 @@
         %td= "TAK" if post.visible?
         %td= l post.published_at.to_date, format: :long
         %td= l post.updated_at.to_date, format: :long
+        %td
+          - if post.posted_to_facebook?
+            TAK
+          - else
+            = button_to "publikuj", post_to_facebook_admin_post_path(post), confirm: "Na pewno opublikować na Facebooku?"
         %td= link_to "edycja / treść", edit_admin_post_path(post)
         %td= button_to "usuń", admin_post_path(post), method: :delete, confirm: "Na pewno usunąć ten wpis?"
