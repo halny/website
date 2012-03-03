@@ -22,6 +22,7 @@ Halny::Application.routes.draw do
         post :post_to_facebook
       end
     end
+    resources :pages
     root :to => "dashboard#show"
   end
 
