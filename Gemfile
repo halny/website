@@ -22,6 +22,8 @@ gem 'koala'
 gem 'paperclip'
 gem 'ckeditor', git: 'git://github.com/pshoukry/ckeditor.git'
 
+gem 'friendly_id'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

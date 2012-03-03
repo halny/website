@@ -2,6 +2,8 @@
   %li= link_to "Główna", root_path
   %li= link_to "Zapisy", races_path
   %li= link_to "Pigułka"
+  - Page.for_navbar.each do |page|
+    %li= link_to page.name, static_page_path(page)
   - if current_user.present?
     %li= link_to "Konto", edit_settings_path
     - if current_user.is_admin?

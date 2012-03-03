@@ -6,6 +6,8 @@ class Post < ActiveRecord::Base
 
   validates_presence_of :title, :content
 
+  attr_accessible :title, :content, :published_at
+
   def visible?
     published_at.present? && published_at <= Time.now
   end

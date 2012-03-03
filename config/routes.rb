@@ -29,5 +29,7 @@ Halny::Application.routes.draw do
 
   resources :posts, path: 'wiadomosci'
 
+  get '/:id(.:format)', to: 'pages#show', as: 'static_page'
+
   root :to => "posts#index"
 end
