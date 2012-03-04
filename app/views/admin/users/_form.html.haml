@@ -1,0 +1,12 @@
+= semantic_form_for [:admin, @user] do |f|
+  = f.inputs do
+    = f.input :name, label: 'Imię'
+    = f.input :lastname, label: 'Nazwisko'
+    = f.input :email, label: 'Adres email'
+    = f.input :telephone, label: 'Numer telefonu'
+    = f.input :is_student, label: 'Zniżki studenckie', as: :boolean
+    = f.input :is_member, label: 'Członek klubu z opłaconą składką', as: :boolean
+    = f.input :is_admin, label: 'Admin strony', as: :boolean
+
+  = f.buttons do
+    = f.commit_button "Zapisz", button_html: { class: 'button medium brown radius' }
