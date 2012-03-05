@@ -2,6 +2,8 @@ Halny::Application.routes.draw do
 
   resources :races, path: 'zapisy', only: [:index]
 
+  resources :tabs, path: 'pigulka', only: [:index]
+
   resources :race_variants, path: 'trasa', only: [] do
     resources :race_registrations, path: 'zapisy', only: [:new, :create]
   end

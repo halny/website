@@ -1,0 +1,19 @@
+- if @tabs.present?
+  %ul
+    - @tabs.each do |tab|
+      %li.tab
+        %dl
+          %h3= tab.name
+          %dt Data
+          %dd= tab.time_interval_str
+          - if tab.place.present?
+            %dt Gdzie
+            %dd= tab.place
+          - if tab.finish.present?
+            %dt Meta
+            %dd= tab.finish
+          - if tab.organizers.present?
+            %dt Organizacja
+            %dd= tab.organizers
+- else
+  %p Chwilowo brak danych w pigułce.

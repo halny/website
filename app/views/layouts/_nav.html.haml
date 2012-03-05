@@ -1,7 +1,7 @@
 %ul.nav
   %li= link_to "Główna", root_path
   %li= link_to "Zapisy", races_path
-  %li= link_to "Pigułka"
+  %li= link_to "Pigułka", tabs_path
   - Page.for_navbar.each do |page|
     %li= link_to page.name, static_page_path(page)
   - if current_user.present?
