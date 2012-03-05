@@ -32,22 +32,22 @@ pl:
     - sobota
     formats:
       default: ! '%d-%m-%Y'
-      long: ! '%B %d, %Y'
+      long: ! '%e %B %Y'
       short: ! '%d %b'
     month_names:
     - 
-    - styczeń
-    - luty
-    - marzec
-    - kwiecień
-    - maj
-    - czerwiec
-    - lipiec
-    - sierpień
-    - wrzesień
-    - październik
-    - listopad
-    - grudzień
+    - stycznia
+    - lutego
+    - marca
+    - kwietnia
+    - maja
+    - czerwca
+    - lipca
+    - sierpnia
+    - września
+    - października
+    - listopada
+    - grudnia
     order:
     - :day
     - :month
