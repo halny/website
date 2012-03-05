@@ -26,6 +26,7 @@ Halny::Application.routes.draw do
     end
     resources :users
     resources :pages
+    resources :tabs
     root :to => "dashboard#show"
   end
 
