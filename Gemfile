@@ -36,6 +36,8 @@ end
 gem 'jquery-rails'
 gem 'zurb-foundation', '2.1.3.1'
 
+gem 'sunspot_rails'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -47,6 +49,10 @@ gem 'zurb-foundation', '2.1.3.1'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+group :development do
+  gem 'sunspot_solr'
+end
 
 group :test do
   gem 'rspec-rails'
