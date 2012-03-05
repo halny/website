@@ -1,4 +1,12 @@
+%h2 Pigułka
+= form_tag tabs_path, method: :get do
+  = search_field_tag :search, params[:search]
+  = submit_tag "Szukaj"
 - if @tabs.present?
+  -if params[:search].present?
+    %p
+      Wyniki dla zapytania:
+      %b= params[:search]
   %ul
     - @tabs.each do |tab|
       %li.tab
@@ -16,4 +24,7 @@
             %dt Organizacja
             %dd= tab.organizers
 - else
-  %p Chwilowo brak danych w pigułce.
+  - if params[:search].present?
+    %p.error Brak wyników dla zapytania: #{params[:search]}
+  - else
+    %p Chwilowo brak danych w pigułce.
