@@ -86,8 +86,8 @@ ActiveRecord::Schema.define(:version => 20120305174035) do
 
   create_table "tabs", :force => true do |t|
     t.time     "deleted_at"
-    t.time     "from"
-    t.time     "to"
+    t.datetime "from"
+    t.datetime "to"
     t.string   "organizers"
     t.string   "name"
     t.string   "finish"

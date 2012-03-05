@@ -2,8 +2,8 @@ class CreateTabs < ActiveRecord::Migration
   def change
     create_table :tabs do |t|
       t.time :deleted_at
-      t.time :from
-      t.time :to
+      t.datetime :from
+      t.datetime :to
       t.string :organizers
       t.string :name
       t.string :finish

@@ -4,6 +4,8 @@ class Tab < ActiveRecord::Base
 
   attr_accessible :from, :to, :organizers, :name, :finish, :place
 
+  validates_presence_of :name, :from, :to
+
   searchable do
     text :organizers, :name, :finish, :place
     text :date do

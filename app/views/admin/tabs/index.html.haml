@@ -1,0 +1,27 @@
+%h2 Zarządzanie pigułką
+
+.actions
+  =link_to "Dodaj nową informację", new_admin_tab_path, class: 'button medium radius brown'
+
+%table
+  %thead
+    %tr
+      %th Nazwa
+      %th Od
+      %th Do
+      %th Miejsce
+      %th Meta
+      %th Organizacja
+      %th
+      %th
+  %tbody
+    - @tabs.each do |tab|
+      %tr
+        %td= tab.name
+        %td= l tab.from.to_date, format: :long
+        %td= l tab.to.to_date, format: :long
+        %td= tab.place
+        %td= tab.finish
+        %td= tab.organizers
+        %td= link_to "edycja / treść", edit_admin_tab_path(tab)
+        %td= button_to "usuń", admin_tab_path(tab), method: :delete, confirm: "Na pewno usunąć ten wpis?"

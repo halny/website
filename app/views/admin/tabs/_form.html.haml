@@ -1,0 +1,10 @@
+= semantic_form_for [:admin, @tab] do |f|
+  = f.inputs do
+    = f.input :name, label: 'Nazwa wydarzenia'
+    = f.input :from, label: 'Trwało od', as: :date
+    = f.input :to, label: 'Trwało do', as: :date
+    = f.input :place, label: 'Miejsce'
+    = f.input :finish, label: 'Meta'
+    = f.input :organizers, label: 'Organizacja'
+  = f.buttons do
+    = f.commit_button "Zapisz", button_html: { class: 'button medium brown radius' }
