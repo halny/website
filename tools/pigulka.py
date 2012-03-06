@@ -1,7 +1,7 @@
 ﻿from bs4 import BeautifulSoup
 import re
 
-soup = BeautifulSoup(open("pigulka.php"))
+soup = BeautifulSoup(open("bp.php"))
 
 
 class Link():
@@ -55,20 +55,29 @@ class Rajd:
         galerie = self.linki_na_ciag(self.galerie)
         informatorki = self.linki_na_ciag(self.informatorki)
         format_string = "nazwa: {0}\nrok: {1}\ndata: {2}\ngory: {3}\nmeta: {4}\norganizatorzy: {5}\nrelacje: {6}\ngalerie: {7}\ninformatorek: {8}"
-        return  format_string.format(self.nazwa, self.rok, self.data,
+        result = format_string.format(self.nazwa, self.rok, self.data,
                                      self.gdzie, self.meta, organizatorzy,
                                      relacje, galerie, informatorki)
+        return result
 
-    def print_csf(self):        
-        #organizatorzy = ", ".join(organizatorzy)
+    def csv(self):        
         organizatorzy = ", ".join(self.organizatorzy) if self.organizatorzy!=None else ""
         relacje = self.linki_na_ciag(self.relacje)
         galerie = self.linki_na_ciag(self.galerie)
         informatorki = self.linki_na_ciag(self.informatorki)
-        format_string = "nazwa: {0}\nrok: {1}\ndata: {2}\ngory: {3}\nmeta: {4}\norganizatorzy: {5}\nrelacje: {6}\ngalerie: {7}\ninformatorek: {8}"
-        return  format_string.format(self.nazwa, self.rok, self.data,
+        format_string = "{0}; {1}; {2}; {3}; {4}; {5}; {6}; {7}; {8}"
+        return format_string.format(self.nazwa, self.rok, self.data,
                                      self.gdzie, self.meta, organizatorzy,
                                      relacje, galerie, informatorki)
+
+def zapisz_do_csv(rajdy):
+
+        file = open("result.csv", "w")
+        file.write("nazwa;rok;data;gory;meta;organizatorzy;relacje;galerie;informatorek\n")
+        for rok, rajdy_rok in rajdy.iteritems():
+            for rajd in rajdy_rok:
+                file.write(rajd.csv()+"\n")
+        file.close()
 
 
 def zgadnij_etykiete(ciag):
@@ -91,50 +100,56 @@ for h_rocznik in h_roczniki:
     rok = int(h_rocznik.a['name'])
     #print rok
     rajdy[rok] = []
-    h_rajdy = h_rocznik.ul.findAll("li", recursive=False)
-    for h_rajd in h_rajdy:    
-        nazwa = h_rajd.contents[0].string.strip()        
-        #print u"\t"+nazwa
-        h_detale = h_rajd.ul.findAll("li")
-        data = h_detale[0].string.strip()
-        gdzie = h_detale[1].string.strip()
-        detale = {}
-        for i, detal in enumerate(h_detale[2:]):
-            #for subdetal in detal.contents:  
-                 subdetal = detal.contents[0]                 
-                 etykieta, wartosc = zgadnij_etykiete(subdetal.string.strip())
-                 if etykieta in ("informatorek", "relacja", "galeria"):
-                     detale[etykieta] = detale.setdefault(etykieta, [])
-                     h_linki = detal.findAll("a")
-                     if len(h_linki) == 0:
-                         link = Link("", wartosc)
-                         detale[etykieta].append(link)
-                     else:
-                         for h_link in h_linki:
-                             adres = h_link["href"]
-                             tekst = h_link.string
-                             if etykieta == "informatorek":
-                                 link = Link(adres, tekst)
+    for ul_rajdy_wid in h_rocznik.findAll("ul", "rajdy_widoczne", recursive=False):
+        h_rajdy = ul_rajdy_wid.findAll("li", recursive=False)
+        for h_rajd in h_rajdy:    
+            nazwa = h_rajd.contents[0].string.strip()        
+            #print u"\t"+nazwa
+            h_rajd_ul = h_rajd.find("ul", "kwadrat")
+            if h_rajd_ul != None:
+                h_detale = h_rajd_ul.findAll("li")
+                data = h_detale[0].string.strip()
+                gdzie = h_detale[1].string.strip()
+                detale = {}
+                for i, detal in enumerate(h_detale[2:]):
+                    #for subdetal in detal.contents:  
+                         subdetal = detal.contents[0]                 
+                         etykieta, wartosc = zgadnij_etykiete(subdetal.string.strip())
+                         if etykieta in ("informatorek", "relacja", "galeria"):
+                             detale[etykieta] = detale.setdefault(etykieta, [])
+                             h_linki = detal.findAll("a")
+                             if len(h_linki) == 0:
+                                 link = Link("", wartosc)
+                                 detale[etykieta].append(link)
                              else:
-                                 link = Relacja_galeria(adres, tekst)
-                             detale[etykieta].append(link)
-                 elif etykieta == "inne":
-                     detale[etykieta] = detale.setdefault(etykieta, [])
-                     detale[etykieta].append(wartosc)
-                 else:
-                     detale[etykieta] = wartosc
-                 #print etykieta+": "+wartosc                 
-                 #print "\t\t"+subdetal.string
-                 
-        organizatorzy = detale.get("organizatorzy")
-        if organizatorzy != None:
-            organizatorzy = organizatorzy.split(", ")
+                                 for h_link in h_linki:
+                                     adres = h_link["href"]
+                                     tekst = h_link.string
+                                     if etykieta == "informatorek":
+                                         link = Link(adres, tekst)
+                                     else:
+                                         link = Relacja_galeria(adres, tekst)
+                                     detale[etykieta].append(link)
+                         elif etykieta == "inne":
+                             detale[etykieta] = detale.setdefault(etykieta, [])
+                             detale[etykieta].append(wartosc)
+                         else:
+                             detale[etykieta] = wartosc
+                         #print etykieta+": "+wartosc                 
+                         #print "\t\t"+subdetal.string
+                         
+                organizatorzy = detale.get("organizatorzy")
+                if organizatorzy != None:
+                    organizatorzy = organizatorzy.split(", ")
 
-        rajd = Rajd(nazwa, rok, data, gdzie,
-                    meta = detale.get("meta"),
-                    organizatorzy = organizatorzy,
-                    galerie = detale.get("galeria"),
-                    relacje = detale.get("relacja"),
-                    informatorki = detale.get("informatorek"),
-                    inne = detale.get("inne"))
-        rajdy[rok].append(rajd)
+                rajd = Rajd(nazwa, rok, data, gdzie,
+                            meta = detale.get("meta"),
+                            organizatorzy = organizatorzy,
+                            galerie = detale.get("galeria"),
+                            relacje = detale.get("relacja"),
+                            informatorki = detale.get("informatorek"),
+                            inne = detale.get("inne"))
+                rajdy[rok].append(rajd)
+
+zapisz_do_csv(rajdy)
+
